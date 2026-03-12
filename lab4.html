@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lab 4</title>
+
+        <script>
+            window.alert("Hello! Welcome to my store.");
+
+            var name,
+                item,
+                count,
+                plural;
+
+            name = window.prompt("What is your name?", "Customer");
+            item = window.prompt("What would you like to buy?", "Apple");
+            count = window.prompt("How many do you want to buy?", "1");
+
+            if (parseInt(count) > 99 || parseInt(count) < 1) {
+                count = "1"
+            }
+
+            if (parseInt(count) > 1) {
+                plural = "s"
+            }
+            else {
+                plural = ""
+            }
+
+            now = new Date();
+            deliveryDate = new Date();
+            sevenDaysInMs = 7 * 24 * 60 * 60 * 1000
+            deliveryDate.setTime(now.getTime() + sevenDaysInMs)
+            hour = now.getHours();
+
+            if (hour < 12) {
+                document.write("<h1>Good Morning, ")
+            } else if (hour < 18) {
+                document.write("<h1>Good Afternoon, ")
+            } else {
+                document.write("<h1>Good Evening, ")
+            }
+            document.writeln(name + "." + "</h1>")
+            document.writeln("<br>")
+
+            document.writeln("<h1>Customer: " + name + "</h1>")
+            document.writeln("<h1>Item: " + item + "</h1>")
+            document.writeln("<h1>Amount: " + count + "</h1>")
+            document.writeln("<br>")
+
+            document.writeln("<h1>Your order of  " + count + " " + item + plural + " will arrive on " + deliveryDate + "</h1>")
+            document.writeln("<br>")
+        </script>
+    </head>
+    <body>
+        <h1>Click refresh to run this script again</h1>
+    </body>
+</html>
