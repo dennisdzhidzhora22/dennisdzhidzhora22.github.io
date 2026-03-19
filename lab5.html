@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Lab 5</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        
+        <script>
+            function submitForm() {
+                var elements = document.getElementById("myForm").elements;
+                var elemsArr = Array.from(elements);
+                var user = {};
+
+                var submitStatus = document.getElementById("submitStatus");
+                var userInfo = document.getElementById("userInfo");
+
+                // Add to user object, checking for missing fields
+                for (var i = 0; i < elemsArr.length; i++) {
+                    if (elemsArr[i].value.length == 0) {
+                        submitStatus.innerHTML = "Error: Please fill all fields and try again.";
+                        userInfo.innerHTML = "";
+                        return;
+                    }
+                    else {
+                        user[elemsArr[i].name] = elemsArr[i].value;
+                    }
+                }
+
+                // Check if password has special character (! or ?)
+                if (!(user["pword"].includes("!") || user["pword"].includes("?"))) {
+                    submitStatus.innerHTML = "Error: Please use a special character in your password and try again.";
+                    userInfo.innerHTML = "";
+                    return;
+                }
+
+                // Update password to asterisks
+                user["pword"] = "*".repeat(user["pword"].length);
+
+                // Show user info if valid
+                submitStatus.innerHTML = "Success!";
+                userInfo.innerHTML = "";
+                for (const prop in user) {
+                    userInfo.innerHTML += `${prop}: ${user[prop]}<br>`;
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <center>
+                    <h1 class="display-4">CSC 225 - Lab 5</h1>
+                </center>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand">Navbar:</a>
+                <div class="navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav flex-wrap">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="README.md">Lab 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Lab 2 (Also Home)</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="lab3.html">Lab 3</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="lab4.html">Lab 4</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="lab5.html">Lab 5 (You are here)</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <br>
+
+        <div class="container">
+            <h2>My New Store Registration page</h2><br>
+            <h4>Create your account:</h4><br>
+        </div>
+
+        <div class="container">
+            <form id="myForm">
+                First Name: <input type="text" name="fname"><br>
+                Last Name: <input type="text" name="lname"><br>
+                Email: <input type="text" name="email"><br>
+                Password (must have special characters ! or ?): <input type="text" name="pword"><br>
+                Date of Birth: <input type="date" name="dob"><br>
+            </form><br>
+            <button onclick=submitForm()>Submit</button><br><br>
+
+            <p id="submitStatus"></p>
+            <p id="userInfo"></p>
+        </div><br>
+
+        <hr>
+        <p class="container">Dennis Dzhidzhora - 3/19/2026</p>
+    </body>
+</html>
